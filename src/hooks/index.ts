@@ -1,3 +1,4 @@
+import useDebounce from './useDebounce'
 import useResize from './useResize'
 
-export { useResize }
+export { useDebounce, useResize }
