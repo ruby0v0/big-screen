@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import type { ECharts } from 'echarts'
 import * as echarts from 'echarts'
 import Title from '../../Title.vue'
-
-const chartRef = shallowRef<HTMLDivElement>()
-
-const chartIns = shallowRef<ECharts>()
 
 const data = [
   {
@@ -101,21 +96,14 @@ function getSeries() {
     },
   }))
 }
-
-function renderChart() {
-  chartIns.value = echarts.init(chartRef.value)
-  chartIns.value?.setOption(opt)
-}
-
-onMounted(() => {
-  renderChart()
-})
 </script>
 
 <template>
   <div class="screen-block">
     <Title title="地区销量趋势" />
-    <div ref="chartRef" class="h-9/10 w-full" />
+    <div class="h-9/10 w-full">
+      <v-chart :opt="opt" />
+    </div>
   </div>
 </template>
 
@@ -126,5 +114,18 @@ onMounted(() => {
   background-color: var(--ds-block-bg);
   padding: 16px;
   margin-top: 20px;
+  animation: slide 1.5s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  80% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>
