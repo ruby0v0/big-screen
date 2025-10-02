@@ -13,12 +13,12 @@ const { screenRef } = useResize()
       ref="screenRef"
       class="relative h-1080px w-1920px origin-[0_0] overflow-hidden transition-all duration-500"
     >
-      <img src="../../assets//img/bg.jpg" alt="">
+      <!-- <img src="../../assets//img/bg.jpg" alt=""> -->
       <div class="screen">
         <Header />
         <div class="screen-main">
           <div class="screen-left">
-            1
+            <LeftSider />
           </div>
           <div class="screen-center">
             2
