@@ -8,10 +8,10 @@ const { screenRef } = useResize()
 </script>
 
 <template>
-  <div class="h-full w-full overflow-hidden" bg="[length:100%_100%] black">
+  <div class="h-screen w-screen overflow-hidden" bg="[size:100%_100%] black">
     <div
       ref="screenRef"
-      class="relative h-1080px w-1920px origin-[0_0] overflow-hidden transition-all duration-500"
+      class="relative z-100 origin-[left_top] overflow-hidden transition-all duration-500"
     >
       <!-- <img src="../../assets//img/bg.jpg" alt=""> -->
       <div class="screen">
