@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { ECharts } from 'echarts'
 import * as echarts from 'echarts'
-import Title from './Title.vue'
+import Title from '../../Title.vue'
 
 const chartRef = shallowRef<HTMLDivElement>()
 
 const chartIns = shallowRef<ECharts>()
 
-const opts: echarts.EChartsCoreOption = {
+const opt: echarts.EChartsCoreOption = {
   tooltip: {
     trigger: 'axix',
     axisPointer: {
@@ -71,7 +71,7 @@ const opts: echarts.EChartsCoreOption = {
 
 function renderChart() {
   chartIns.value = echarts.init(chartRef.value)
-  chartIns.value?.setOption(opts)
+  chartIns.value?.setOption(opt)
 }
 
 onMounted(() => {

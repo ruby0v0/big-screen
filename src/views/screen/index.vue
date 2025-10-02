@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useResize } from '@/hooks'
 import Header from './components/Header.vue'
-import LeftSider from './components/LeftSider.vue'
+import LeftSider from './components/LeftSider/index.vue'
 import RightSider from './components/RightSider.vue'
 
 const { screenRef } = useResize()
@@ -38,7 +38,7 @@ const { screenRef } = useResize()
   --ds-screen-width: 1920px;
   --ds-header-height: 72px;
   --ds-block-bg: #222733;
-  -ds-screen-bg: rgb(22, 21, 24);
+  --ds-screen-bg: rgb(22, 21, 24);
   --ds-screen-text-color: white;
   position: absolute;
   padding: 0 20px;
