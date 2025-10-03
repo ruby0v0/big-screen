@@ -4,11 +4,16 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    viteMockServe({
+      mockPath: 'mock',
+      enable: true,
+    }),
     UnoCSS(),
     AutoImport({
       dts: 'src/types/auto-import.d.ts',
