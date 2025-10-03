@@ -2,9 +2,11 @@
 </script>
 
 <template>
-  <div class="h-full w-full">
-    <RouterView />
-  </div>
+  <n-message-provider>
+    <div class="h-full w-full">
+      <RouterView />
+    </div>
+  </n-message-provider>
 </template>
 
 <style scoped></style>

@@ -1,17 +1,12 @@
 <script setup lang="ts">
+import type { Sales } from '@/api/sales/types'
 import * as echarts from 'echarts'
+import { fetchSales } from '@/api/sales'
 import Title from '../../Title.vue'
 
-const data = [
-  { name: '商家1', value: 99 },
-  { name: '商家2', value: 88 },
-  { name: '商家3', value: 77 },
-  { name: '商家4', value: 66 },
-  { name: '商家5', value: 55 },
-  { name: '商家6', value: 44 },
-]
+const sales = ref<Sales[]>([])
 
-const opt: echarts.EChartsCoreOption = {
+const opt = computed<echarts.EChartsCoreOption>(() => ({
   tooltip: {
     trigger: 'axix',
     axisPointer: {
@@ -33,7 +28,7 @@ const opt: echarts.EChartsCoreOption = {
   },
   yAxis: {
     type: 'category',
-    data: data.map(item => item.name),
+    data: sales.value.map(item => item.name),
     inverse: true,
     axisLabel: {
       color: '#fff',
@@ -52,7 +47,7 @@ const opt: echarts.EChartsCoreOption = {
       show: true,
       position: 'right',
     },
-    data: data.map(item => item.value),
+    data: sales.value.map(item => item.value),
     barWidth: 20,
     roundCap: true,
     showBackground: true,
@@ -71,7 +66,15 @@ const opt: echarts.EChartsCoreOption = {
       }]),
     },
   }],
+}))
+
+async function getSales() {
+  sales.value = await fetchSales()
 }
+
+onMounted(() => {
+  getSales()
+})
 </script>
 
 <template>

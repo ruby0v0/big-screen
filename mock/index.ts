@@ -4,24 +4,24 @@ import { getJsonFile } from './utils'
 
 export default [
   {
-    url: '/api/sale/list',
+    url: '/api/sales/list',
     method: 'get',
     response: () => {
       return Mock.mock({
         code: 200,
         msg: 'success',
-        ...getJsonFile('./data/sale.json'),
+        ...getJsonFile('./data/sales.json'),
       })
     },
   },
   {
-    url: '/api/trend/list',
+    url: '/api/trends/list',
     method: 'get',
     response: () => {
       return Mock.mock({
         code: 200,
         msg: 'success',
-        ...getJsonFile('./data/trend.json'),
+        ...getJsonFile('./data/trends.json'),
       })
     },
   },

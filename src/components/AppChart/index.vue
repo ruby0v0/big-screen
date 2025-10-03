@@ -4,7 +4,7 @@ import * as echarts from 'echarts'
 
 interface Props {
   opt: echarts.EChartsCoreOption
-  loading: boolean
+  loading?: boolean
 }
 
 const props = defineProps<Props>()

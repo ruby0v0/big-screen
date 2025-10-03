@@ -1,31 +1,12 @@
 <script setup lang="ts">
+import type { Trends } from '@/api/trends/types'
 import * as echarts from 'echarts'
+import { fetchTrends } from '@/api/trends'
 import Title from '../../Title.vue'
 
-const data = [
-  {
-    name: '上海',
-    data: ['155.13', '154.65', '171.46', '164.38', '237.23', '300.65', '240.29', '232.07', '193.31', '136.70', '48.64', '90.20'],
-  },
-  {
-    name: '北京',
-    data: ['86.25', '33.80', '145.58', '21.79', '176.09', '132.41', '291.05', '191.89', '151.54', '94.25', '141.75', '157.14'],
-  },
-  {
-    name: '深圳',
-    data: ['143.94', '186.29', '183.64', '251.48', '195.48', '152.16', '52.47', '184.12', '203.79', '39.16', '56.37', '161.64'],
-  },
-  {
-    name: '广州',
-    data: ['57.60', '77.61', '307.24', '165.05', '175.41', '276.88', '269.04', '296.11', '105.31', '283.39', '134.08', '265.38'],
-  },
-  {
-    name: '重庆',
-    data: ['200.82', '215.56', '249.80', '222.67', '216.98', '60.12', '309.68', '273.35', '150.99', '251.97', '26.15', '186.99'],
-  },
-]
+const trends = ref<Trends[]>([])
 
-const opt: echarts.EChartsCoreOption = {
+const opt = computed<echarts.EChartsCoreOption>(() => ({
   grid: {
     top: '25%',
     right: '4%',
@@ -40,7 +21,7 @@ const opt: echarts.EChartsCoreOption = {
     top: '8%',
     left: 20,
     icon: 'circle',
-    data: data.map(item => item.name),
+    data: trends.value.map(item => item.name),
     textStyle: {
       color: '#aaa',
     },
@@ -54,7 +35,7 @@ const opt: echarts.EChartsCoreOption = {
     type: 'value',
   },
   series: getSeries(),
-}
+}))
 
 function getSeries() {
   // 半透明的颜色值
@@ -73,7 +54,7 @@ function getSeries() {
     'rgba(254, 33, 30, 0)',
     'rgba(250, 105, 0, 0)',
   ]
-  return data.map((item, index) => ({
+  return trends.value.map((item, index) => ({
     name: item.name,
     type: 'line',
     data: item.data,
@@ -96,6 +77,14 @@ function getSeries() {
     },
   }))
 }
+
+async function getTrends() {
+  trends.value = await fetchTrends()
+}
+
+onMounted(() => {
+  getTrends()
+})
 </script>
 
 <template>
