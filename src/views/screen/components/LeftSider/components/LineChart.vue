@@ -2,6 +2,7 @@
 import type { Trends } from '@/api/trends/types'
 import * as echarts from 'echarts'
 import { fetchTrends } from '@/api/trends'
+import { useAsync } from '@/hooks'
 import Title from '../../Title.vue'
 
 const trends = ref<Trends[]>([])
@@ -79,7 +80,14 @@ function getSeries() {
 }
 
 async function getTrends() {
-  trends.value = await fetchTrends()
+  useAsync(fetchTrends, {
+    onSuccess: (data) => {
+      trends.value = data
+    },
+    onError: (err) => {
+      console.error('获取地区销量趋势失败', err)
+    },
+  })
 }
 
 onMounted(() => {

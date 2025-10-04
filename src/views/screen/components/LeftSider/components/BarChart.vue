@@ -2,6 +2,7 @@
 import type { Sales } from '@/api/sales/types'
 import * as echarts from 'echarts'
 import { fetchSales } from '@/api/sales'
+import { useAsync } from '@/hooks'
 import Title from '../../Title.vue'
 
 const sales = ref<Sales[]>([])
@@ -69,7 +70,14 @@ const opt = computed<echarts.EChartsCoreOption>(() => ({
 }))
 
 async function getSales() {
-  sales.value = await fetchSales()
+  useAsync(fetchSales, {
+    onSuccess: (data) => {
+      sales.value = data
+    },
+    onError: (err) => {
+      console.error('获取地区销量趋势失败', err)
+    },
+  })
 }
 
 onMounted(() => {
