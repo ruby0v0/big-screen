@@ -1,11 +1,36 @@
 <script setup lang="ts">
+import type { Socket } from 'socket.io-client'
 import type { Sale } from '@/api/sales/types'
 import * as echarts from 'echarts'
+import { io } from 'socket.io-client'
 import { fetchSales } from '@/api/sales'
 import { useAsync } from '@/hooks'
 import Title from '../../Title.vue'
 
 const sales = ref<Sale[]>([])
+
+const socket = ref<Socket>()
+const status = ref<'connecting' | 'connected' | 'disconnected'>('connecting')
+
+function initSocket() {
+  socket.value = io('http://localhost:3000', {
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000,
+  })
+
+  socket.value.on('connect', () => {
+    status.value = 'connected'
+  })
+
+  socket.value.on('disconnect', () => {
+    status.value = 'disconnected'
+  })
+
+  socket.value.on('sales', (data) => {
+    sales.value = data
+  })
+}
 
 const opt = computed<echarts.EChartsCoreOption>(() => ({
   tooltip: {
@@ -81,7 +106,12 @@ async function getSales() {
 }
 
 onMounted(() => {
+  initSocket()
   getSales()
+})
+
+onBeforeUnmount(() => {
+  socket.value?.disconnect()
 })
 </script>
 
