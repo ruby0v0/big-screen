@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Sales } from '@/api/sales/types'
+import type { Sale } from '@/api/sales/types'
 import * as echarts from 'echarts'
 import { fetchSales } from '@/api/sales'
 import { useAsync } from '@/hooks'
 import Title from '../../Title.vue'
 
-const sales = ref<Sales[]>([])
+const sales = ref<Sale[]>([])
 
 const opt = computed<echarts.EChartsCoreOption>(() => ({
   tooltip: {

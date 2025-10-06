@@ -25,4 +25,37 @@ export default [
       })
     },
   },
+  {
+    url: '/api/hots/list',
+    method: 'get',
+    response: () => {
+      return Mock.mock({
+        code: 200,
+        msg: 'success',
+        ...getJsonFile('./data/hots.json'),
+      })
+    },
+  },
+  {
+    url: '/api/stock/list',
+    method: 'get',
+    response: () => {
+      return Mock.mock({
+        code: 200,
+        msg: 'success',
+        ...getJsonFile('./data/stocks.json'),
+      })
+    },
+  },
+  {
+    url: '/api/rank/list',
+    method: 'get',
+    response: () => {
+      return Mock.mock({
+        code: 200,
+        msg: 'success',
+        ...getJsonFile('./data/ranks.json'),
+      })
+    },
+  },
 ] as MockMethod[]

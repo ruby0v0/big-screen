@@ -2,7 +2,7 @@
 import { useResize } from '@/hooks'
 import Header from './components/Header.vue'
 import LeftSider from './components/LeftSider/index.vue'
-import RightSider from './components/RightSider.vue'
+import RightSider from './components/RightSider/index.vue'
 
 const { screenRef } = useResize()
 </script>
@@ -24,7 +24,7 @@ const { screenRef } = useResize()
             2
           </div>
           <div class="screen-right">
-            3
+            <RightSider />
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Trends } from '@/api/trends/types'
+import type { Trend } from '@/api/trends/types'
 import * as echarts from 'echarts'
 import { fetchTrends } from '@/api/trends'
 import { useAsync } from '@/hooks'
 import Title from '../../Title.vue'
 
-const trends = ref<Trends[]>([])
+const trends = ref<Trend[]>([])
 
 const opt = computed<echarts.EChartsCoreOption>(() => ({
   grid: {

@@ -1,7 +1,7 @@
-import type { Trends } from './types'
+import type { Trend } from './types'
 import request from '@/utils/request'
 
-export function fetchTrends(): Promise<Trends[]> {
+export function fetchTrends(): Promise<Trend[]> {
   return request({
     url: '/trends/list',
     method: 'GET',

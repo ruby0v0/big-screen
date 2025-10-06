@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import BarChart from './components/BarChart.vue'
-import LineChart from './components/LineChart.vue'
+import SaleChart from './components/SaleChart.vue'
+import TrendChart from './components/TrendChart.vue'
 </script>
 
 <template>
   <div>
-    <BarChart />
-    <LineChart />
+    <SaleChart />
+    <TrendChart />
   </div>
 </template>
 
