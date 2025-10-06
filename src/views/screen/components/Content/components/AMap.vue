@@ -2,7 +2,10 @@
 import * as echarts from 'echarts'
 import mapJson from '@/assets/data/china.json'
 import mapData from '@/assets/data/map.json'
+import { useConfigStore } from '@/store'
 import Title from '../../Title.vue'
+
+const configStore = useConfigStore()
 
 echarts.registerMap('china', mapJson as Parameters<typeof echarts.registerMap>[1])
 
@@ -15,7 +18,7 @@ const opt = computed<echarts.EChartsCoreOption>(() => ({
     layoutCenter: ['50%', '50%'],
     layoutSize: '98%',
     itemStyle: {
-      areaColor: '#2c3e50',
+      areaColor: configStore.theme === 'dark' ? '#2c3e50' : '#fff',
       borderColor: '#111',
     },
   },
@@ -25,7 +28,7 @@ const opt = computed<echarts.EChartsCoreOption>(() => ({
     orient: 'vertical',
     data: mapData.map(item => item.name),
     textStyle: {
-      color: '#aaa',
+      color: configStore.theme === 'dark' ? '#aaa' : '#000',
     },
   },
   series: mapData.map(item => ({

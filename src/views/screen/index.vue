@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useResize } from '@/hooks'
+import { useConfigStore } from '@/store'
 import Content from './components/Content/index.vue'
 import Header from './components/Header.vue'
 import LeftSider from './components/LeftSider/index.vue'
 import RightSider from './components/RightSider/index.vue'
+
+const configStore = useConfigStore()
 
 const { screenRef } = useResize()
 </script>
@@ -15,7 +18,7 @@ const { screenRef } = useResize()
       class="relative z-100 origin-[left_top] overflow-hidden transition-all duration-500"
     >
       <!-- <img src="../../assets//img/bg.jpg" alt=""> -->
-      <div class="screen">
+      <div class="screen" :class="configStore.theme">
         <Header />
         <div class="screen-main">
           <div class="screen-left">
@@ -61,5 +64,11 @@ const { screenRef } = useResize()
 .screen-left,
 .screen-right {
   width: 460px;
+}
+
+.light {
+  --ds-screen-bg: rgb(238, 238, 238);
+  --ds-block-bg: #fff;
+  --ds-screen-text-color: rgb(22, 21, 34);
 }
 </style>
