@@ -114,7 +114,7 @@ function useResize(opts: ResizeOptions = {}) {
     })
   })
 
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     window.removeEventListener('resize', debounceResize)
     observer.value?.disconnect()
     if (!showScroll) {
