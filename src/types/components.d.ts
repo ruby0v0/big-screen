@@ -9,9 +9,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppChart: typeof import('./../components/AppChart/index.vue')['default']
-    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
-    NEl: typeof import('naive-ui')['NEl']
-    NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

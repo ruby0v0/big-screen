@@ -1,6 +1,7 @@
-import useAsync from './useAsync'
-import useDebounce from './useDebounce'
-import useLoading from './useLoaing'
-import useResize from './useResize'
+import useAsync from './module/useAsync'
+import useDebounce from './module/useDebounce'
+import useLoading from './module/useLoaing'
+import useResize from './module/useResize'
+import useSocket from './module/useSocket'
 
-export { useAsync, useDebounce, useLoading, useResize }
+export { useAsync, useDebounce, useLoading, useResize, useSocket }
